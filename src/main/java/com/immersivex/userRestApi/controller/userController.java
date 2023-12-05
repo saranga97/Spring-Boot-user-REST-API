@@ -1,20 +1,28 @@
 package com.immersivex.userRestApi.controller;
 
+import com.immersivex.userRestApi.dto.UserDTO;
+import com.immersivex.userRestApi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/user")
 @CrossOrigin
 public class userController {
 
-    @GetMapping("/getUser")
-    public String getUser() {
-        return "Simple-Root";
+    @Autowired
+    private UserService userService;
+
+    @GetMapping("/getUsers")
+    public List<UserDTO> getUser() {
+        return userService.getAllUsers();
     }
 
     @PostMapping("/saveUser")
-    public String saveUser() {
-        return "User Saved!";
+    public UserDTO saveUser(@RequestBody UserDTO userDTO) {
+        return userService.saveUser(userDTO);
     }
 
     @PutMapping("/updateUser")
