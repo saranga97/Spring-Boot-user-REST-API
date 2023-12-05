@@ -34,4 +34,14 @@ public class userController {
     public boolean deleteUser(@RequestBody UserDTO userDTO) {
         return userService.deleteUser(userDTO);
     }
+
+    @GetMapping("/getUserByUserId/{userID}")
+    public UserDTO getUserByUserID(@PathVariable String userID){
+        return userService.getUserByUserId(userID);
+    }
+
+    @GetMapping("/getUserByNameAndAddress/{name}/{address}")
+    public UserDTO getUserByUserNameAndAddress(@PathVariable String name, @PathVariable String address){
+        return userService.getUserByNameAndAddress(name, address);
+    }
 }
